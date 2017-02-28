@@ -1,7 +1,7 @@
 # RCacheTool
 clear the cathe of app in one code
 #使用
-##直接将.h和.m拖入工程,如果为swift,则配置桥接文件
+##OC工程可以直接将.h和.m拖入工程,如果为swift,则配置桥接文件
 ##普通弹窗清除缓存
 ### OC -- [CacheTool alertToClean];
 ### Swift -- CacheTool.AlertToClean()
