@@ -1,4 +1,7 @@
+
+
 #import <UIKit/UIKit.h>
+#import "CacheTool.h"
 //缓存文件目录
 #ifndef CachePath
 #define CachePath
@@ -7,22 +10,6 @@
 #define TempPath NSTemporaryDirectory()
 #endif
 @implementation CacheTool
-//清除缓存按钮的点击事件
-+ (void)alertToClean{
-    
-    CGFloat size = [self cacheSize];
-      
-    NSString *message = size > 1 ? [NSString stringWithFormat:@"缓存%.2fM, 删除缓存", size] : [NSString stringWithFormat:@"缓存%.2fK, 删除缓存", size * 1024.0];  
-      
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:(UIAlertControllerStyleAlert)];  
-      
-    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction *action) { [self cleanCaches];     }];
-      
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:nil];  
-    [alert addAction:action];  
-    [alert addAction:cancel];  
-    [self showDetailViewController:alert sender:nil];  
-}
 
 //计算全部缓存文件大小
 + (CGFloat)cacheSize{
@@ -36,7 +23,7 @@
 }
 
 // 计算单个目录缓存文件大小
-- (CGFloat)folderSizeAtPath:(NSString *)path{  
++ (CGFloat)folderSizeAtPath:(NSString *)path{
     // 利用NSFileManager实现对文件的管理  
     NSFileManager *manager = [NSFileManager defaultManager];  
     CGFloat size = 0;  
@@ -53,7 +40,7 @@
     return 0;  
 }  
 // 根据路径删除文件  
-- (void)cleanCache:(NSString *)path{
++ (void)cleanCache:(NSString *)path{
     // 利用NSFileManager实现对文件的管理  
     NSFileManager *fileManager = [NSFileManager defaultManager];  
     if ([fileManager fileExistsAtPath:path]) {  
@@ -66,4 +53,5 @@
             [fileManager removeItemAtPath:absolutePath error:nil];  
         }  
     }
+}
 @end
