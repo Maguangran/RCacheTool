@@ -1,7 +1,7 @@
 #import <UIKit/UIKit.h>
 
 @interface CacheTool : NSObject
-+(void)alertToClean;
-+(CGSize)cacheSize;
++(CGFloat)cacheSize;
 +(void)cleanCaches;
 @end
+
